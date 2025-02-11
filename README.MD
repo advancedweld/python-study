@@ -13,6 +13,12 @@ conda create -n <env-name>
 conda env list
 ```
 
+## 安装指定版本 Python
+
+```
+conda install python=3.9
+```
+
 ## 切换环境
 
 ```
