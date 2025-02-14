@@ -30,3 +30,11 @@ conda activate <env-name>
 ```
 conda remove -n  <env-name> --all
 ```
+
+### flask 工程化最佳实践 参考：https://juejin.cn/post/7252976055093592120
+
+## 安装依赖
+
+```
+pip install -r requirements.txt
+```
