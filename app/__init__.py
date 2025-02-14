@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 from app.config import Config
+from app.api import init_api
 
 db = SQLAlchemy()
 # 初始化数据库迁移工具
@@ -18,9 +19,10 @@ def create_app(config_class=Config):
     CORS(app)
 
     # 注册蓝图
-    from app.routes.auth import auth_bp
+
     # from app.routes.user import user_bp
-    app.register_blueprint(auth_bp)
+    # 注册API路由
+    init_api(app)
     # app.register_blueprint(user_bp)
 
     return app
