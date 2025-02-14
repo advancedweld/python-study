@@ -5,6 +5,7 @@ from flask_cors import CORS
 from app.config import Config
 
 db = SQLAlchemy()
+# 初始化数据库迁移工具
 migrate = Migrate()
 
 def create_app(config_class=Config):
