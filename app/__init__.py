@@ -1,13 +1,11 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask_cors import CORS
 from app.config import Config
 from app.api import init_api
 
-db = SQLAlchemy()
-# 初始化数据库迁移工具
-migrate = Migrate()
+
+from app.database import db, migrate  # 从 extensions 导入 db 和 migrate
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)

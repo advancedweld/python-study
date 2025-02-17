@@ -7,6 +7,14 @@
 conda create -n <env-name>
 ```
 
+## 启动项目
+
+```
+ python run.py
+ <!-- 或者 -->
+ flask run
+```
+
 ## 查看环境
 
 ```

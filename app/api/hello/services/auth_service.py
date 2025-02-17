@@ -1,4 +1,4 @@
-from app.models.user import User
+from ..models.user import User
 from app.utils.jwt_utils import JWTUtils
 
 def login_user(email, password):
