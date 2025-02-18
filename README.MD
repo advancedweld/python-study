@@ -55,5 +55,9 @@ flask db init
 
 # 后面每次修改数据库字段时使用
 
-flask db migrate
+flask db migrate -m 'message'
 flask db upgrade
+
+<!-- 回退脚本 -->
+
+flask db downgrade

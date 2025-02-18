@@ -17,5 +17,5 @@ class Hello(Resource):
 
 api.add_resource(Hello, '/')
 
-api.add_resource(Register, '/register')
+api.add_resource(Register, '/user/register')
 
