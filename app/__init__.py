@@ -1,16 +1,19 @@
 from flask import Flask
 from flask_cors import CORS
-from app.config import Config
+from app.config import config
 from app.api import init_api
 
 
 from app.database import db, migrate  # 从 extensions 导入 db 和 migrate
 
+print('@@@Config:', config)
 
-def create_app(config_class=Config):
+def create_app(config_name):
+    print('@__name__', __name__)
     app = Flask(__name__)
-    app.config.from_object(config_class)
+    app.config.from_object(config[config_name])
 
+    print('@@@app:', app.config)
     # 初始化扩展
     db.init_app(app)
     migrate.init_app(app, db)
