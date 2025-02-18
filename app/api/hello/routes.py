@@ -17,7 +17,7 @@ def helloNmae(name):
     return f"Hello, name {escape(name)}!"
 
 
-auth_bp = Blueprint('auth', __name__)
+
 
 @hello_bp.route('/login', methods=['POST'])
 def login():

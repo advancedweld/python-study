@@ -6,14 +6,14 @@ from app.api import init_api
 
 from app.database import db, migrate  # 从 extensions 导入 db 和 migrate
 
-print('@@@Config:', config)
+# print('@@@Config:', config)
 
 def create_app(config_name):
-    print('@__name__', __name__)
+    # print('@__name__', __name__)
     app = Flask(__name__)
     app.config.from_object(config[config_name])
 
-    print('@@@app:', app.config)
+    print('@@@app:',config[config_name])
     # 初始化扩展
     db.init_app(app)
     migrate.init_app(app, db)

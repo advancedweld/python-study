@@ -9,7 +9,7 @@ class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'your_default_secret_key')
 
     # 数据库配置
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///app.db')
+    # SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False  # 禁用 SQLAlchemy 的事件系统，提高性能
 
     # JWT 配置
@@ -34,7 +34,7 @@ class DevelopmentConfig(Config):
     # 开发环境配置
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv('DEV_DATABASE_URL', 'sqlite:///dev.db')
-
+    print('@@@SQLALCHEMY_DATABASE_URI', SQLALCHEMY_DATABASE_URI)
 class TestingConfig(Config):
     # 测试环境配置
     TESTING = True
