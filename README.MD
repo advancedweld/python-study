@@ -46,3 +46,14 @@ conda remove -n  <env-name> --all
 ```
 pip install -r requirements.txt
 ```
+
+## 更新数据库
+
+# 第一次初始化时使用
+
+flask db init
+
+# 后面每次修改数据库字段时使用
+
+flask db migrate
+flask db upgrade

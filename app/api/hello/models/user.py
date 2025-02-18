@@ -1,6 +1,6 @@
 from app.database import db
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import uuid
 # class User(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -25,8 +25,8 @@ class UserModel(db.Model):
   id = db.Column(db.Integer(), primary_key=True, nullable=False, autoincrement=True, comment='主键ID')
   # 用户名
   username = db.Column(db.String(40), nullable=False, default='', comment='用户姓名')
-  # 密码
-  pwd = db.Column(db.String(102), comment='密码')
+  # 密码 可能会比较长，这里最大长度设置255
+  pwd = db.Column(db.String(255), comment='密码')
   # salt
   salt = db.Column(db.String(32), comment='salt')
   # 创建时间
@@ -66,4 +66,12 @@ class UserModel(db.Model):
     return db.session.query(cls).all()
 
 
+   # 密码设置：加盐并加密
+  def set_password(self, password):
+      self.salt = uuid.uuid4().hex  # 生成一个新的盐值
+      self.pwd = generate_password_hash(f'{self.salt}{password}')  # 使用盐值加密密码
+
+    # 密码校验
+  def check_password(self, password):
+      return check_password_hash(self.pwd, f'{self.salt}{password}')
 

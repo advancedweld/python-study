@@ -1,28 +1,21 @@
 from flask import Blueprint, request, jsonify
+from flask_restful import Api, Resource
+
 from markupsafe import escape
 from .services.auth_service import login_user
+from .services.user_service import Register
+
+
 
 hello_bp = Blueprint('hello', __name__)
 
+api = Api(hello_bp)
 
-@hello_bp.route('/', methods=['GET'])
-def hello():
-    return jsonify({'message': 'Hello, Xiangshangzhi!'})
+class Hello(Resource):
+    def get(self):
+        return {'message': 'Hello,  my Xiangshangzhi!'}
 
+api.add_resource(Hello, '/')
 
+api.add_resource(Register, '/register')
 
-@hello_bp.route("/<name>")
-def helloNmae(name):
-    print('@@@rquest:', request)
-    return f"Hello, name {escape(name)}!"
-
-
-
-
-@hello_bp.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    email = data.get('email')
-    password = data.get('password')
-    token = login_user(email, password)
-    return jsonify({'token': token})
