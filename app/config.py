@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-
+from datetime import timedelta
 # 加载 .env 文件中的环境变量
 load_dotenv()
 
@@ -14,7 +14,9 @@ class Config:
 
     # JWT 配置
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'your_jwt_secret_key')
-    JWT_ACCESS_TOKEN_EXPIRES = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES', 3600))  # Token 过期时间（秒）
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=2)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
+    # JWT_ACCESS_TOKEN_EXPIRES = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES', 3600))  # Token 过期时间（秒）
 
     # 文件上传配置
     UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', 'uploads')
