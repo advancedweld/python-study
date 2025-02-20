@@ -5,6 +5,7 @@ from markupsafe import escape
 from .services.auth_service import login_user
 from .services.user_register_service import Register
 
+from .services.user_login_service import Login
 
 
 hello_bp = Blueprint('hello', __name__)
@@ -19,3 +20,4 @@ api.add_resource(Hello, '/')
 
 api.add_resource(Register, '/user/register')
 
+api.add_resource(Login, '/user/login', '/user/refreshToken')
