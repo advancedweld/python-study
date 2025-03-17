@@ -33,6 +33,11 @@ class Login(Resource):
         if valid:
           # 生成 token 
           response_data = generateToken(username)
+          # 添加用户角色信息到返回数据中
+          response_data['userInfo'] = {
+            'username': user.username,
+            'role': user.role
+          }
           return res_common(response_data)
         else:
           raise ValueError('Invalid password!')
@@ -49,13 +54,25 @@ class Login(Resource):
     print('@@@@@current_username', current_username)
     # 再生成新的 token
     access_token = create_access_token(identity=current_username)
-    return res_common(data={'accessToken': 'Bearer ' + access_token})
+    
+    # 获取用户信息
+    user_tuple = UserModel.find_by_username(current_username)
+    if user_tuple:
+      (user,) = user_tuple
+      return res_common(data={
+        'accessToken': 'Bearer ' + access_token,
+        'userInfo': {
+          'username': user.username,
+          'role': user.role
+        }
+      })
+    return res_common(data={'accessToken': access_token})
 
 # 生成token
 def generateToken(id):
   access_token = create_access_token(identity=id)
   refresh_token = create_refresh_token(identity=id)
   return {
-    'accessToken': 'Bearer ' + access_token,
-    'refreshToken': 'Bearer ' + refresh_token,
+    'accessToken':  access_token,
+    'refreshToken':  refresh_token,
    }

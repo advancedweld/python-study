@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource
 
 from markupsafe import escape
-from .services.auth_service import login_user
+# from .services.auth_service import login_user
 from .services.user_register_service import Register
 
 from .services.user_login_service import Login
