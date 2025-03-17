@@ -11,10 +11,18 @@ class Login(Resource):
     # 初始化解析器
     parser = reqparse.RequestParser()
     # 添加请求参数校验
-    parser.add_argument('username', type=str, location='json')
+    parser.add_argument('userName', type=str, location='json')
     parser.add_argument('password', type=str, dest='pwd', location='json')
     data = parser.parse_args()
-    username = data['username']
+    username = data['userName']
+    user_all = UserModel.query.all()
+    
+    # 打印所有用户名
+    print("所有用户列表:")
+    for user in user_all:
+        print(f"用户名: {user.username}")
+    
+    print("@@@@user_all",user_all)
     user_tuple = UserModel.find_by_username(username)
     print("@@@@user_tuple",user_tuple)
     if user_tuple:
@@ -31,7 +39,7 @@ class Login(Resource):
       except Exception as e:
         return res_common(success=False, message='Error: {}'.format(e), code=500)
     else:
-      return res_common(success=False, message='Unregistered username!', code=400)
+      return res_common(success=False, message='用户命不存在!', code=400)
 
 
   def get(self):

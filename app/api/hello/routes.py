@@ -6,6 +6,7 @@ from .services.auth_service import login_user
 from .services.user_register_service import Register
 
 from .services.user_login_service import Login
+from .services.user_list_service import UserList
 
 
 hello_bp = Blueprint('hello', __name__)
@@ -20,4 +21,6 @@ api.add_resource(Hello, '/')
 
 api.add_resource(Register, '/user/register')
 
-api.add_resource(Login, '/user/login', '/user/refreshToken')
+api.add_resource(Login, '/auth/login', '/auth/refreshToken')
+
+api.add_resource(UserList, '/user/all')

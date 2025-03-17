@@ -10,11 +10,11 @@ class Register(Resource):
   def post(self):
     parser = reqparse.RequestParser()
 
-    parser.add_argument('username', type=str, location='json')
+    parser.add_argument('userName', type=str, location='json')
     parser.add_argument('password', type=str, dest='pwd', location='json')
     data = parser.parse_args()
     print('@@@@row data',   data)
-    if UserModel.find_by_username(data['username']):
+    if UserModel.find_by_username(data['userName']):
       return {
         'success': False,
         'message': "用户名已存在",
@@ -23,7 +23,7 @@ class Register(Resource):
     else: 
       try:
         # 创建用户对象
-        user = UserModel(username=data['username'])
+        user = UserModel(username=data['userName'])
         user.set_password(data['pwd'])  # 设置密码
         user.addUser()
         return {

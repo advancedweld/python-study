@@ -7,12 +7,12 @@ class UserModel(db.Model):
   """
    用户表
    """
-  __tablename__ = 'user'
+  __tablename__ = 'users'
 
   # 主键 id
   id = db.Column(db.Integer(), primary_key=True, nullable=False, autoincrement=True, comment='主键ID')
   # 用户名
-  username = db.Column(db.String(40), nullable=False, default='', comment='用户姓名')
+  username = db.Column(db.String(80), unique=True, nullable=False, comment='用户姓名')
   # 密码 可能会比较长，这里最大长度设置255
   pwd = db.Column(db.String(255), comment='密码')
   # salt
@@ -21,6 +21,8 @@ class UserModel(db.Model):
   created_at = db.Column(db.DateTime(), nullable=False, default=datetime.now, comment='创建时间')
   # 更新时间
   updated_at = db.Column(db.DateTime(), nullable=False, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+  # 添加角色字段，默认为'user'，管理员为'admin'
+  role = db.Column(db.String(20), default='user', nullable=False)
 
   # 新增用户
   def addUser(self):
