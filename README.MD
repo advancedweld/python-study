@@ -35,6 +35,12 @@ conda install python=3.9
 conda activate <env-name>
 ```
 
+## 更新依赖到reqierement文件
+```
+pip freeze > requirements.txt
+
+```
+
 ## 删除环境
 
 ```
