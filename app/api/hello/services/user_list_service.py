@@ -38,6 +38,6 @@ class UserList(Resource):
             user_list.append(user_data)
         
         return res_common(data={
-            'total': len(user_list),
-            'items': user_list
+            'totalCount': len(user_list),
+            'users': user_list
         }) 

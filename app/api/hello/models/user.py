@@ -33,9 +33,11 @@ class UserModel(db.Model):
   def dict(self):
     return {
       "id": self.id,
-      "username": self.username,
-      "created_at": self.created_at,
-      "updated_at": self.updated_at,
+      "userName": self.username,
+      "createdTime": self.created_at,
+      "updatedTime": self.updated_at,
+      "userId": self.id,
+      "role": self.role
      }
   
   # 按 username 查找用户 返回一个元组(user,)
