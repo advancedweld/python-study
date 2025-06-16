@@ -37,4 +37,3 @@ class Register(Resource):
           'message': "Error: {}".format(e),
           'data': None,
          }, 500
-
